@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        /* General body styling */
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Container padding and spacing */
+        .container {
+            margin-top: 50px;
+        }
+
+        /* Card styling */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hover effect for cards */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Card title styling */
+        .card-title {
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Card description text */
+        .card-text {
+            color: #777;
+        }
+
+        /* Bootstrap link color override */
+        .card-body a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card-body a:hover {
+            color: #0056b3;
+        }
+
+        /* Footer section and text styling */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        /* Button styling for Edit/Delete links */
+        .btn-custom {
+            color: #fff;
+            background-color: #17a2b8;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #138496;
+        }
+        
+        /* Background color for headings */
+        h1 {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Responsive image size */
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Card footer for dates */
+        .card-footer {
+            background-color: #f8f9fa;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Today's New Blogs</h1>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <a href="{% url 'product_detail' product.pk %}">
+                            <img src="{{ product.image.url }}" alt="{{ product.created_name }}" class="card-img-top">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.short_description }}</p>
+                            <a href="{% url 'edit_product' product.pk %}" class="btn-custom">Edit</a>
+                            <a href="{% url 'delete_product' product.pk %}" class="btn-custom">Delete</a> <br>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Created at: {{ product.created_at }}</small> <br>
+                            <small class="text-muted">Updated at: {{ product.updated_at }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery scripts here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Blog Detail</title>
+
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        /* Body background and font settings */
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main container settings */
+        .container {
+            margin-top: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        /* Main heading styling */
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Product name (secondary heading) styling */
+        h2 {
+            font-size: 2rem;
+            color: #343a40;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* Product description styling */
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        /* Image styling */
+        img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Links (edit/delete) styling */
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #007bff;
+            margin-right: 15px;
+        }
+
+        /* Hover effect for links */
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Back button styling */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>{{ product.name }} - Blog</h1>
+        
+        <div class="text-center">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="300">
+        </div>
+
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+
+        <!-- Edit and Delete Links -->
+        <div class="d-flex justify-content-start">
+            <a href="{% url 'edit_product' product.pk %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger ml-3">Delete</a>
+        </div>
+
+        <!-- Back to Blog List -->
+        <a href="{% url 'product_list' %}" class="back-button">Back to Blogs Home Page</a>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
